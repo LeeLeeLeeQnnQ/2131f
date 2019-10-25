@@ -165,37 +165,38 @@ export default {
 
   },
   props: {
-    info:{
+    info: {
       type: Object,
       default () {
         return { }
       }
-    },
+    }
   },
   data () {
     return {
-      viewItem:{},
-      viewModal:false,
+      viewItem: {},
+      viewModal: false
     }
   },
   methods: {
     // init
-    initData(){
-      this.viewItem = Object.assign({},this.info)
-      this.viewModal = true;
-    },
+    initData () {
+      this.viewItem = Object.assign({}, this.info)
+      this.viewModal = true
+    }
   },
   mounted () {
-    
+
   },
   beforeDestroy () {
-    
+
   },
   watch: {
     info (newV, oldV) {
+      console.log(1)
       this.viewItem = {}
-      this.initData();
-    },
+      this.initData()
+    }
   }
 }
 </script>

@@ -28,9 +28,9 @@ const BASE_URL = process.env.NODE_ENV === 'production'
 // };
 module.exports = {
   // 引入高德
-  configureWebpack:{
+  configureWebpack: {
     externals: {
-      'AMap': 'AMap',
+      'AMap': 'AMap'
       // 'AMapUI': 'AMapUI'
     }
   },
@@ -58,16 +58,14 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        // target: 'http://192.168.50.250',
-        target: 'https://c.baitime.cn',
+        target: 'http://192.168.50.250',
         changeOrigin: true,
         pathRewrite: {
           '^/api': '/api'
         }
       },
       '/captcha': {
-        // target: 'http://192.168.50.250/captcha',
-        target: 'https://c.baitime.cn/captcha',
+        target: 'http://192.168.50.250/captcha',
         changeOrigin: true
       }
     }

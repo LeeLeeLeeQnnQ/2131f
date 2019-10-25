@@ -27,7 +27,7 @@
     </Card>
     <!-- 表格主题 -->
     <Card shadow>
-      <tables 
+      <tables
         :stripe="true"
         :columns="bill_columns"
         v-model="bill_list"
@@ -46,7 +46,7 @@ import KSBEditRunBill from './components/KSBEditRunBill'
 // 权限
 // Kitchen/index,StoreBill/queryList,StoreCharge/queryList,StoreBill/edit,StoreCharge/add
 import { getKitchenList } from '@/api/data'
-import { getStoreBillList , getStoreChargeItem , editStoreBillItem , addStoreCharge } from '@/api/kitchen'
+import { getStoreBillList, getStoreChargeItem, editStoreBillItem, addStoreCharge } from '@/api/kitchen'
 export default {
   name: 'kitchenShopBill',
   components: {
@@ -58,23 +58,23 @@ export default {
   data () {
     return {
       // 基本数据
-      showInfo:{},
+      showInfo: {},
       // 查看能源账单
-      viewItem:{},
+      viewItem: {},
       // 编辑商户账单
-      storeRentBill:{},
+      storeRentBill: {},
       // 编辑经营费用
-      paymentItem:{},
+      paymentItem: {},
       // 厨房下拉
-      kitchen:[],
+      kitchen: [],
       // 选中厨房信息
-      select_kitchen:[],
+      select_kitchen: [],
       // 搜索
-      select_time:'',
-      select_kitchen_id:'',
-      keyword:'',
+      select_time: '',
+      select_kitchen_id: '',
+      keyword: '',
       // 表格
-      bill_columns:[
+      bill_columns: [
         {title: '厨房', key: 'kitchen_name'},
         {title: '月份', key: 'month'},
         {title: '商户', key: 'store_name'},
@@ -82,47 +82,46 @@ export default {
         {title: '公摊天数', key: 'day_number'},
         { title: '经营费用',
           render: (h, params) => {
-            let operate_fee = params.row.operate_fee;
-            let operate_overdue_fee = params.row.operate_overdue_fee;
-            let operate_exempt_fee = params.row.operate_exempt_fee;
-            let fee = (operate_fee*1 + operate_overdue_fee*1 - operate_exempt_fee*1).toFixed(2);
+            let operate_fee = params.row.operate_fee
+            let operate_overdue_fee = params.row.operate_overdue_fee
+            let operate_exempt_fee = params.row.operate_exempt_fee
+            let fee = (operate_fee * 1 + operate_overdue_fee * 1 - operate_exempt_fee * 1).toFixed(2)
             return h('span', fee)
           }
         },
         { title: '房租',
           render: (h, params) => {
-            let rent_fee = params.row.rent_fee;
-            let rent_overdue_fee = params.row.rent_overdue_fee;
-            let rent_exempt_fee = params.row.rent_exempt_fee;
-            let fee = (rent_fee*1 + rent_overdue_fee*1 - rent_exempt_fee*1).toFixed(2);
+            let rent_fee = params.row.rent_fee
+            let rent_overdue_fee = params.row.rent_overdue_fee
+            let rent_exempt_fee = params.row.rent_exempt_fee
+            let fee = (rent_fee * 1 + rent_overdue_fee * 1 - rent_exempt_fee * 1).toFixed(2)
             return h('span', fee)
           }
         },
-        {title: '往期未缴', 
+        {title: '往期未缴',
           render: (h, params) => {
-            let is_new = params.row.new*1;
-            let store_account = '';
-            if(is_new == 1){
-              store_account = params.row.store_account;
-            }else{
-              store_account = '----';
+            let is_new = params.row.new * 1
+            let store_account = ''
+            if (is_new == 1) {
+              store_account = params.row.store_account
+            } else {
+              store_account = '----'
             }
             return h('span', store_account)
           }
         },
         { title: '总未缴款',
           render: (h, params) => {
-            
-            let is_deposit = params.row.is_deposit;
-            let unpaid_fee = params.row.unpaid_fee;
-            if(is_deposit*1 == 1){
+            let is_deposit = params.row.is_deposit
+            let unpaid_fee = params.row.unpaid_fee
+            if (is_deposit * 1 == 1) {
               return h('span', { style: {color: '#67ba23'}}, '押金已抵扣')
             }
-            if(unpaid_fee*1 > 1000){
+            if (unpaid_fee * 1 > 1000) {
               return h('span', { style: {color: '#ff9900'}}, unpaid_fee)
-            }else if( unpaid_fee*1 > 0){
+            } else if (unpaid_fee * 1 > 0) {
               return h('span', { style: {color: '#2d8cf0'}}, unpaid_fee)
-            }else{
+            } else {
               return h('span', { style: {color: '#19be6b'}}, unpaid_fee)
             }
           }
@@ -132,9 +131,9 @@ export default {
           key: 'handle',
           button: [
             (h, params, vm) => {
-              let is_deposit = params.row.is_deposit;
-              if(is_deposit*1 == 1){
-                return 
+              let is_deposit = params.row.is_deposit
+              if (is_deposit * 1 == 1) {
+                return
               }
               return h('Button', {
                 props: {
@@ -147,22 +146,22 @@ export default {
                   }
                 }},
               '经营费用')
-            },
+            }
           ]
         },
         {
           title: '编辑',
           key: 'handle',
-          width :90,
+          width: 90,
           button: [
             (h, params, vm) => {
-              let is_deposit = params.row.is_deposit;
-              if(is_deposit*1 == 1){
-                return 
+              let is_deposit = params.row.is_deposit
+              if (is_deposit * 1 == 1) {
+                return
               }
               return h('Poptip', {
                 style: {
-                  margin:'5px 0 ',
+                  margin: '5px 0 '
                 },
                 props: {
                   confirm: true,
@@ -184,13 +183,13 @@ export default {
               ])
             },
             (h, params, vm) => {
-              let is_deposit = params.row.is_deposit;
-              if(is_deposit*1 == 1){
-                return 
+              let is_deposit = params.row.is_deposit
+              if (is_deposit * 1 == 1) {
+                return
               }
               return h('Poptip', {
                 style: {
-                  margin:'5px 0 ',
+                  margin: '5px 0 '
                 },
                 props: {
                   confirm: true,
@@ -210,147 +209,147 @@ export default {
                   style: {marginLeft: '0px'}
                 }, '租金')
               ])
-            },
+            }
           ]
-        },
+        }
       ],
-      bill_list:[],
+      bill_list: [],
       // 总公摊天出
-      count_days:0,
+      count_days: 0
     }
   },
   methods: {
     // 通用
-    getPayItemTotal( info ){
-      let total = 0;
-      total = info.garbage_fee*1 + total;
-      total = info.water_fee*1 + total;
-      total = info.energy_fee*1 + total;
-      total = info.water_share_fee*1 + total;
-      total = info.energy_share_fee*1 + total;
-      total = info.flue_fee*1 + total;
-      total = info.kill_fee*1 + total;
-      total = info.network_fee*1 + total;
-      total = info.storage_fee*1 + total;
-      total = info.health_fee*1 + total;
-      total = info.fine_fee*1 + total;
-      total = info.one_fee*1 + total;
-      total = info.other_fee*1 + total;
-      total = info.operating_fee*1 + total;
-      total = info.project_fee*1 + total;
-      total = info.taxes_fee*1 + total;
-      total = info.operate_overdue_fee*1 + total;
-      total = total - info.operate_exempt_fee*1;
-      return total.toFixed(2);
+    getPayItemTotal (info) {
+      let total = 0
+      total = info.garbage_fee * 1 + total
+      total = info.water_fee * 1 + total
+      total = info.energy_fee * 1 + total
+      total = info.water_share_fee * 1 + total
+      total = info.energy_share_fee * 1 + total
+      total = info.flue_fee * 1 + total
+      total = info.kill_fee * 1 + total
+      total = info.network_fee * 1 + total
+      total = info.storage_fee * 1 + total
+      total = info.health_fee * 1 + total
+      total = info.fine_fee * 1 + total
+      total = info.one_fee * 1 + total
+      total = info.other_fee * 1 + total
+      total = info.operating_fee * 1 + total
+      total = info.project_fee * 1 + total
+      total = info.taxes_fee * 1 + total
+      total = info.operate_overdue_fee * 1 + total
+      total = total - info.operate_exempt_fee * 1
+      return total.toFixed(2)
     },
     // 查看能源账单
-    viewEnergyBill(params){
-      let viewItem = {};
-      viewItem = params.row;
-      viewItem.water_value = viewItem.water_start - viewItem.water_end;
-      viewItem.energy_value = viewItem.water_value - viewItem.energy_end;
-      viewItem.total = this.getPayItemTotal(viewItem);
+    viewEnergyBill (params) {
+      let viewItem = {}
+      viewItem = Object.assign({}, params.row)
+      viewItem.water_value = viewItem.water_start - viewItem.water_end
+      viewItem.energy_value = viewItem.water_value - viewItem.energy_end
+      viewItem.total = this.getPayItemTotal(viewItem)
       this.viewItem = viewItem
     },
     // 显示弹窗
-    showEditStoreRentBill(params){
+    showEditStoreRentBill (params) {
       let storeRentBill = {}
-      storeRentBill.id = params.row.id;
-      storeRentBill.rent_fee = params.row.rent_fee;
-      storeRentBill.rent_overdue_fee = params.row.rent_overdue_fee;
-      storeRentBill.rent_exempt_fee = params.row.rent_exempt_fee;
-      storeRentBill.month = params.row.month;
-      storeRentBill.store_name = params.row.store_name;
-      storeRentBill.sreach = { month : this.select_time , kitchen_id:this.select_kitchen_id , keyword:this.keyword };
+      storeRentBill.id = params.row.id
+      storeRentBill.rent_fee = params.row.rent_fee
+      storeRentBill.rent_overdue_fee = params.row.rent_overdue_fee
+      storeRentBill.rent_exempt_fee = params.row.rent_exempt_fee
+      storeRentBill.month = params.row.month
+      storeRentBill.store_name = params.row.store_name
+      storeRentBill.sreach = { month: this.select_time, kitchen_id: this.select_kitchen_id, keyword: this.keyword }
       this.storeRentBill = storeRentBill
     },
     // 显示弹窗
-    showEditStoreRunBill(params){
-      let paymentItem = Object.assign({}, params.row);
-      paymentItem.total = this.getPayItemTotal(paymentItem);
-      paymentItem.showInfo = this.showInfo;
-      paymentItem.sreach = { month : this.select_time , kitchen_id:this.select_kitchen_id , keyword:this.keyword };
+    showEditStoreRunBill (params) {
+      let paymentItem = Object.assign({}, params.row)
+      paymentItem.total = this.getPayItemTotal(paymentItem)
+      paymentItem.showInfo = this.showInfo
+      paymentItem.sreach = { month: this.select_time, kitchen_id: this.select_kitchen_id, keyword: this.keyword }
       this.paymentItem = paymentItem
     },
     // 搜索
     // 选择厨房
-    selectKitchen(){
-      let select_kitchen = this.kitchen.filter((item,index,arr)=>{
-        if(item.id == this.select_kitchen_id){
+    selectKitchen () {
+      let select_kitchen = this.kitchen.filter((item, index, arr) => {
+        if (item.id == this.select_kitchen_id) {
           return item
         }
       })
       this.select_kitchen = select_kitchen[0]
-      this.initData({ month : this.select_time , kitchen_id:this.select_kitchen_id , keyword:this.keyword})
+      this.initData({ month: this.select_time, kitchen_id: this.select_kitchen_id, keyword: this.keyword})
     },
-    //选择时间
-    selectDate(date){
-      this.select_time  = date;
-      this.initData({ month : this.select_time , kitchen_id:this.select_kitchen_id , keyword:this.keyword })
+    // 选择时间
+    selectDate (date) {
+      this.select_time = date
+      this.initData({ month: this.select_time, kitchen_id: this.select_kitchen_id, keyword: this.keyword })
     },
-    changeKeyword( ){
-      this.initData({ month : this.select_time , kitchen_id:this.select_kitchen_id , keyword:this.keyword })
-    },   
+    changeKeyword () {
+      this.initData({ month: this.select_time, kitchen_id: this.select_kitchen_id, keyword: this.keyword })
+    },
     // 获取账单列表
-    getStoreBillList(data){
+    getStoreBillList (data) {
       getStoreBillList(data).then(res => {
         const dbody = res.data
-        if(dbody.code != 0){
+        if (dbody.code != 0) {
           this.$Notice.warning({
-            title: dbody.msg,
+            title: dbody.msg
           })
           return
         }
-        this.bill_list = dbody.data.list || [];
-        this.count_days = dbody.data.days || 0;
-      });
+        this.bill_list = dbody.data.list || []
+        this.count_days = dbody.data.days || 0
+      })
     },
     // 初始化基础
-    initBaseData ( info ){
-      this.showInfo = {};
+    initBaseData (info) {
+      this.showInfo = {}
       // 垃圾及隔油池
-      this.showInfo.garbage_fee = info.garbage_fee;
+      this.showInfo.garbage_fee = info.garbage_fee
       // 烟道清洗
-      this.showInfo.flue_fee = info.flue_fee;
+      this.showInfo.flue_fee = info.flue_fee
       // 消杀
-      this.showInfo.kill_fee = info.kill_fee;
+      this.showInfo.kill_fee = info.kill_fee
       // 网络使用费
-      this.showInfo.network_fee = info.network_fee;
+      this.showInfo.network_fee = info.network_fee
       // 水费基数
-      this.showInfo.water_fee = info.water_fee;
+      this.showInfo.water_fee = info.water_fee
       // 电费基数
-      this.showInfo.energy_fee = info.energy_fee;
+      this.showInfo.energy_fee = info.energy_fee
       // 库房费
-      this.showInfo.storage_fee = info.storage_fee;
+      this.showInfo.storage_fee = info.storage_fee
       // 卫生费
-      this.showInfo.health_fee = info.health_fee;
+      this.showInfo.health_fee = info.health_fee
       // 活跃档口数量
-      this.showInfo.store_count  = info.store_count;
+      this.showInfo.store_count = info.store_count
     },
-    //初始化
-    initData( info ){
+    // 初始化
+    initData (info) {
       // 基本属性
-      this.initBaseData( this.select_kitchen );
+      this.initBaseData(this.select_kitchen)
       // 获取账单列表
-      this.getStoreBillList( info );
-    },
+      this.getStoreBillList(info)
+    }
   },
   created () {
     // 获取当前时间
-    let mYear = new Date().getFullYear();
-    let mMonth = (new Date().getMonth() + 1) + '';
-    mMonth = mMonth < 10 ? "0" + mMonth : mMonth;
-    this.select_time = mYear +'-'+ mMonth;
+    let mYear = new Date().getFullYear()
+    let mMonth = (new Date().getMonth() + 1) + ''
+    mMonth = mMonth < 10 ? '0' + mMonth : mMonth
+    this.select_time = mYear + '-' + mMonth
     // 获取厨房列表
     getKitchenList().then(res => {
       const dbody = res.data
-      this.kitchen = dbody.data || [];
-      this.select_kitchen = this.kitchen[this.kitchen.length*1-1];
-      this.select_kitchen_id = this.select_kitchen.id;
-      this.initData({ month : this.select_time , kitchen_id:this.select_kitchen_id })
+      this.kitchen = dbody.data || []
+      this.select_kitchen = this.kitchen[this.kitchen.length * 1 - 1]
+      this.select_kitchen_id = this.select_kitchen.id
+      this.initData({ month: this.select_time, kitchen_id: this.select_kitchen_id })
     })
   },
-  computed:{
+  computed: {
   }
 }
 </script>
