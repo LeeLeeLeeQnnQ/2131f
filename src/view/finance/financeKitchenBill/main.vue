@@ -373,7 +373,7 @@ export default {
     // 查看能源账单
     viewEnergyBill(params){
       let viewItem = {};
-      viewItem = params.row;
+      viewItem = Object.assign({}, params.row)
       viewItem.water_value = viewItem.water_start - viewItem.water_end;
       viewItem.energy_value = viewItem.water_value - viewItem.energy_end;
       viewItem.total = this.getPayItemTotal(viewItem);
@@ -458,7 +458,6 @@ export default {
         budget_list.list = dbody.data || [];
         budget_list.sreach = { month : this.select_time , kitchen_id:this.select_kitchen_id , keyword:this.keyword };
         this.budget_list  = budget_list;
-        console.log(this.budget_list)
       })
     },
     // 搜索
