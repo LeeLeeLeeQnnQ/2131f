@@ -123,10 +123,11 @@ export default {
       polygonObj.editor.close()
       this.smap.remove(polygonObj.polygon);
       // 清除数据
-      let itemArr = this.polygonArr.filter((i)=>{
-        return i.poid  != this.currentPoid;
+      let itemArr = this.polygonArr.forEach((item,index)=>{
+        if(item.poid === this.currentPoid){
+            this.polygonArr.splice(index,1);
+        }
       });
-      this.polygonArr = itemArr;
       // 清除当前索引
       this.currentPoid = '';
     },
