@@ -198,7 +198,7 @@ export default {
       getMapInfo(data).then(res => {
         let  dbody = res.data
         this.polygonArr.forEach((item)=>{
-          if(item.poid = polygonObj.poid){
+          if(item.poid === polygonObj.poid){
             item.hasData = false;
           }
         })
@@ -216,7 +216,7 @@ export default {
           // 返回数据成功
           let resData = dbody.data || {}
           this.polygonArr.forEach((item)=>{
-            if(item.poid = polygonObj.poid){
+            if(item.poid === polygonObj.poid){
               item.brand_ratio = resData.brand_ratio
               item.brand_shop = resData.brand_shop
               item.category_ratio = resData.category_ratio || {}
