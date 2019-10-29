@@ -166,7 +166,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>{{print_info.operating_fee}}</td>
+                <td>{{print_info.other_fee}}</td>
               </tr>
               <tr align="left">
                 <td>经营费用减免</td>
