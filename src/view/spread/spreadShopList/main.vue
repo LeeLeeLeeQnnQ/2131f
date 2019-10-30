@@ -99,10 +99,10 @@
             <Input v-model="addItem.shop_service" placeholder="输入单笔服务费" style="width: 200px"></Input>
           </FormItem>
           <FormItem label="城市经度">
-            <Input v-model="addItem.latitude" placeholder="输入城市经度" style="width: 200px"></Input>
+            <Input v-model="addItem.longitude" placeholder="输入城市经度" style="width: 200px"></Input>
           </FormItem>
           <FormItem label="城市纬度">
-            <Input v-model="addItem.longitude" placeholder="输入城市纬度" style="width: 200px"></Input>
+            <Input v-model="addItem.latitude" placeholder="输入城市纬度" style="width: 200px"></Input>
           </FormItem>
           <FormItem label="开始营业时间">
             <TimePicker :value="addItem.start_time"  format="HH:mm" type="time" placeholder="选择开始营业时间"  @on-change="selectAddStartTime" style="width: 200px"></TimePicker>
@@ -221,10 +221,10 @@
             <Input v-model="editItem.shop_service" placeholder="输入单笔服务费" style="width: 200px"></Input>
           </FormItem>
           <FormItem label="城市经度">
-            <Input v-model="editItem.latitude" placeholder="输入城市经度" style="width: 200px"></Input>
+            <Input v-model="editItem.longitude" placeholder="输入城市经度" style="width: 200px"></Input>
           </FormItem>
           <FormItem label="城市纬度">
-            <Input v-model="editItem.longitude" placeholder="输入城市纬度" style="width: 200px"></Input>
+            <Input v-model="editItem.latitude" placeholder="输入城市纬度" style="width: 200px"></Input>
           </FormItem>
           <FormItem label="开始营业时间">
             <TimePicker :value="editItem.start_time"  format="HH:mm" type="time" placeholder="选择开始营业时间"  @on-change="selectAddStartTime" style="width: 200px"></TimePicker>
