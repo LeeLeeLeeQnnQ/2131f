@@ -95,6 +95,50 @@ export default [
       }
     ]
   },
+  //招商管理
+  {
+    path: '/shopOrder',
+    name: 'shopOrder',
+    meta: {
+      icon: '_dianpu-xianxing',
+      title: '商户订单',
+      access: [900]
+    },
+    component: Main,
+    children: [
+      // 商户列表
+      {
+        path: '/shopOrderCurrent',
+        name: 'shopOrderCurrent',
+        meta: {
+          icon: '_kucun-xianxing',
+          title: '商户实时订单',
+          access: [901]
+        },
+        component: () => import('@/view/shop-order/shopOrderCurrent/main.vue')
+      },
+      {
+        path: '/shopOrderOld',
+        name: 'shopOrderOld',
+        meta: {
+          icon: '_kucun-xianxing',
+          title: '商户历史订单',
+          access: [902]
+        },
+        component: () => import('@/view/shop-order/shopOrderOld/main.vue')
+      },
+      {
+        path: '/shopOrderComment',
+        name: 'shopOrderComment',
+        meta: {
+          icon: '_haoping-yuankuang',
+          title: '订单评论',
+          access: [903]
+        },
+        component: () => import('@/view/shop-order/shopOrderComment/main.vue')
+      }
+    ]
+  },
   // 数据分析
   {
     path: '/analysis',

@@ -4,6 +4,11 @@ export default {
   shopDetail: '店铺',
   userSetting: '修改设置',
 
+  shopOrder:'商户订单',
+  shopOrderCurrent:'商户实时订单',
+  shopOrderOld:'商户历史订单',
+  shopOrderComment:'订单评论',
+
   analysis:'厨房数据分析',
   analysisEntrance:'起租进度',
   analysisOccupy:'入住率',

@@ -594,8 +594,65 @@ export const getMapInfo = (data) => {
 }
 
 
+// 订单列表
+export const getCurrentOrderList = (data) => {
+  return axios.request({
+    url: 'api/Order/index',
+    data,
+    method: 'post'
+  })
+}
 
 
+// 详情
+export const getCurrentOrderDetail = (data) => {
+  return axios.request({
+    url: 'api/Order/detail',
+    data,
+    method: 'post'
+  })
+}
+
+
+// 订单列表
+export const getHistoryOrderList = (data) => {
+  return axios.request({
+    url: 'api/Order/history',
+    data,
+    method: 'post'
+  })
+}
+
+
+// 详情
+export const getHistoryOrderDetail = (data) => {
+  return axios.request({
+    url: 'api/Order/show',
+    data,
+    method: 'post'
+  })
+}
+
+
+// getShopComment
+export const getShopComment = (data) => {
+  return axios.request({
+    url: 'api/Comment/index',
+    data,
+    method: 'post'
+  })
+}
+
+
+
+// getShopComment
+export const getShopCommentDetail = (data) => {
+  return axios.request({
+    url: 'api/Comment/show',
+    data,
+    method: 'post'
+  })
+}
 
 
 

@@ -391,6 +391,15 @@ export const getStoreList = (data) => {
 }
 
 
+
+export const getStoreQueryList = (data) => {
+  return axios.request({
+    url: '/api/Store/queryList',
+    params: data,
+    method: 'get'
+  })
+}
+
 // 商户账号列表
 /*
   推广商户
