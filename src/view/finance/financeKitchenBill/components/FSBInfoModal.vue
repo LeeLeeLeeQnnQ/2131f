@@ -84,7 +84,7 @@
             <FormItem label="一次性费用" class="cellTit">
                 <span>{{viewItem.one_fee}}</span>
             </FormItem>
-            <FormItem label="代收税费" class="cellTit">
+            <FormItem label="服务费" class="cellTit">
                 <span>{{viewItem.taxes_fee}}</span>
             </FormItem>
             <FormItem label="滞纳金" class="cellTit">

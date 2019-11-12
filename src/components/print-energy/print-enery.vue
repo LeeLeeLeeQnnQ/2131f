@@ -145,7 +145,7 @@
                 <td>{{ print_info.one_fee}}</td>
               </tr>
               <tr align="left">
-                <td>代收税费</td>
+                <td>服务费</td>
                 <td></td>
                 <td></td>
                 <td></td>

@@ -219,7 +219,7 @@
               </FormItem>
             </i-col>
             <i-col span="8">
-              <FormItem label="代收税费">
+              <FormItem label="服务费">
                   <Input v-model="paymentItem.taxes_fee" @on-change="updateComputedPaper"></Input>
               </FormItem>
             </i-col>
