@@ -806,7 +806,8 @@ export default [
           icon: '_zhucetianjiahaoyou',
           hideInMenu: true,
           title: route => `异常退款 : ${route.query.id}`,
-          access: [512]
+          access: [512],
+          notCache: true,
         },
         component: () => import('@/view/finance/financeErrorQuit/main.vue')
       },
