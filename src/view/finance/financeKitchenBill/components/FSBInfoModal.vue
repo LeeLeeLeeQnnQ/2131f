@@ -96,9 +96,11 @@
             <FormItem label="其他费用" class="cellTit">
                 <span>{{viewItem.other_fee}}</span>
             </FormItem>
+            <div style='background-color:rgba(0,0,0,0.1);height:1px;border:none;'></div>
             <FormItem label="经营费用减免" class="cellTit">
                 <span>{{viewItem.operate_exempt_fee}}</span>
             </FormItem>
+            <div style='background-color:rgba(0,0,0,0.1);height:1px;border:none;'></div>
           </i-col>
         </Row>
         <Card shadow>

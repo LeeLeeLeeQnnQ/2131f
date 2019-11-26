@@ -236,6 +236,12 @@
               </FormItem>
             </i-col>
             <i-col span="8">
+              
+            </i-col>
+            <i-col span="24">
+              <div style='background-color:rgba(0,0,0,0.1);height:1px;border:none;'></div>
+            </i-col>
+            <i-col span="8">
               <FormItem label="经营费用减免">
                   <Input v-model="paymentItem.operate_exempt_fee" @on-change="updateComputedPaper"></Input>
               </FormItem>
