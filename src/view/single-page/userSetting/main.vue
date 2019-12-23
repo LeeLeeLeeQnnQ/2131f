@@ -74,9 +74,9 @@ export default {
         return
       }
 
-      let pReg = new RegExp("^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$");
+      let pReg = /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9~!@&%#_]{8,16}$/
 
-      if (!pReg.test(this.formItem.newPWD)) {
+      if (!pReg.exec(this.formItem.newPWD)) {
         this.$Message.info("密码必须含有大写字母，小写字母和数字,不能包含特殊字符")
         return
       }
