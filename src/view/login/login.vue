@@ -28,7 +28,21 @@ export default {
       'setUserInfo'
     ]),
     handleSubmit ({ username, password, captcha }) {
+      console.log(password)
+      console.log(1)
       let that = this;
+      if (password.length<8) {
+        that.$Message.info("密码长度必须大于八位！")
+        return
+      }
+
+      let pReg = new RegExp("^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$");
+
+      if (!pReg.test(password)) {
+        that.$Message.info("密码必须含有大写字母，小写字母和数字,不能包含特殊字符")
+        return
+      }
+
       // 数据请求增容
       that.handleLogin({ username, password, captcha }).then(res => {
         if (res.code != 0) {

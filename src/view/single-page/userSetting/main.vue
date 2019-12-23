@@ -49,6 +49,7 @@ export default {
   methods: {
     // 提交
     changePWD () {
+
       if (!this.formItem.oldPWD) {
         this.$Notice.warning({
           title: '旧密码必须填写！'
@@ -65,6 +66,18 @@ export default {
         this.$Notice.warning({
           title: '两次密码必须一致！'
         })
+        return
+      }
+      let that = this;
+      if (this.formItem.newPWD.length<8) {
+        this.$Notice.info("密码长度必须大于八位！")
+        return
+      }
+
+      let pReg = new RegExp("^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$");
+
+      if (!pReg.test(this.formItem.newPWD)) {
+        this.$Message.info("密码必须含有大写字母，小写字母和数字,不能包含特殊字符")
         return
       }
       let obj = {
