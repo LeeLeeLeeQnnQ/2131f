@@ -50,8 +50,11 @@ class HttpRequest {
     })
     // 响应拦截
     instance.interceptors.response.use(res => {
+     
       this.destroy(url)
       const { data, status } = res
+       // 在这里写加密逻辑返回
+
       if(data.code*1 == 1024){
         router.replace({
           path: 'login',

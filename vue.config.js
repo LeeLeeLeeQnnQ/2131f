@@ -58,16 +58,16 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://192.168.50.250',
+        target: 'http://192.168.2.250',
         changeOrigin: true,
         pathRewrite: {
           '^/api': '/api'
         }
       },
-      '/captcha': {
-        target: 'http://192.168.50.250/captcha',
-        changeOrigin: true
-      }
+      // '/captcha': {
+      //   target: 'http://192.168.2.250/captcha',
+      //   changeOrigin: true
+      // }
     }
   }
 }
